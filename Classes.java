@@ -47,7 +47,6 @@ public class Classes {
 
         return repeatedList;
     }
-    
 
     public static int nOcorrencias(ArrayList<Integer> lista, Integer elemento) {
         int contador = 0;
@@ -61,48 +60,63 @@ public class Classes {
         return contador;
     }
 
+    public static int nroRepeat(ArrayList<Integer> l) {
 
+        Map<Integer, Integer> countMap = new HashMap<>();
 
-public static int nroRepeat(ArrayList<Integer> l) {
-    
-    Map<Integer, Integer> countMap = new HashMap<>();
-    
-    
-    for (Integer num : l) {
-        countMap.put(num, countMap.getOrDefault(num, 0) + 1);
-    }
-    
-    
-    int repeatCount = 0;
-    
-    
-    for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
-        if (entry.getValue() > 1) {
-            repeatCount++;
+        for (Integer num : l) {
+            countMap.put(num, countMap.getOrDefault(num, 0) + 1);
         }
-    }
-    
-    return repeatCount;
+
+        int repeatCount = 0;
+
+        for (Map.Entry<Integer, Integer> entry : countMap.entrySet()) {
+            if (entry.getValue() > 1) {
+                repeatCount++;
+            }
+        }
+
+        return repeatCount;
     }
 
     public static ArrayList<Integer> intersect(ArrayList<Integer> l1, ArrayList<Integer> l2) {
-        
+
         HashSet<Integer> set1 = new HashSet<>(l1);
         HashSet<Integer> set2 = new HashSet<>(l2);
-        
-        
+
         HashSet<Integer> intersectionSet = new HashSet<>();
-        
-        
+
         for (Integer num : set1) {
             if (set2.contains(num)) {
                 intersectionSet.add(num);
             }
         }
-        
-    
+
         ArrayList<Integer> result = new ArrayList<>(intersectionSet);
-        
+
         return result;
+    }
+
+    /*
+     * b. Método que retorna true se l tem elementos repetidos
+     */
+    public static boolean hasRepeat(ArrayList<Integer> l) {
+        HashSet<Integer> set = new HashSet<>();
+        for (Integer num : l) {
+            if (set.contains(num)) {
+                return true;
+            }
+            set.add(num);
+        }
+        return false;
+    }
+
+    /*
+     * e. Método que retorna a união de l1 e l2
+     */
+    public static ArrayList<Integer> union(ArrayList<Integer> l1, ArrayList<Integer> l2) {
+        HashSet<Integer> set = new HashSet<>(l1);
+        set.addAll(l2);
+        return new ArrayList<>(set);
     }
 }
